@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Projects — Tony Chen</title>
+<meta name="description" content="Engineering projects by Tony Chen — robotics, vehicles, and optics.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,700;12..96,75..100,800&family=IBM+Plex+Mono:wght@400&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#E4E7E3;
+    --ink:#171A19;
+    --graphite:#5C635F;
+    --rule:#B9C0BA;
+    --blue:#1B3AC4;
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+
+  body{
+    margin:0;
+    padding:clamp(2rem,6vw,4.5rem) clamp(1.5rem,6vw,5rem) 5rem;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:"Instrument Sans",system-ui,sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .shell{max-width:44rem;margin:0 auto}
+
+  .mono{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.72rem;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--graphite);
+  }
+
+  a{color:var(--blue)}
+  a:focus-visible{outline:2.5px solid var(--blue);outline-offset:4px}
+
+  .back{
+    display:inline-block;
+    text-decoration:none;
+    color:var(--ink);
+    border-bottom:1.5px solid var(--blue);
+    padding-bottom:.2rem;
+    margin-bottom:3rem;
+  }
+  .back:hover{color:var(--blue)}
+
+  h1{
+    font-family:"Bricolage Grotesque",sans-serif;
+    font-variation-settings:"wdth" 88;
+    font-weight:800;
+    font-size:clamp(2.4rem,8vw,4rem);
+    line-height:.95;
+    letter-spacing:-.03em;
+    margin:0 0 2.5rem;
+  }
+
+  article{
+    border-top:1px solid var(--rule);
+    padding:2rem 0;
+  }
+
+  article h2{
+    font-family:"Bricolage Grotesque",sans-serif;
+    font-variation-settings:"wdth" 90;
+    font-weight:700;
+    font-size:clamp(1.25rem,3.2vw,1.6rem);
+    letter-spacing:-.015em;
+    margin:.5rem 0 .8rem;
+    line-height:1.15;
+  }
+
+  article ul{margin:0;padding-left:1.1rem}
+  article li{margin-bottom:.45rem;color:#2A2F2C}
+  article li::marker{color:var(--blue)}
+
+  .specs{
+    margin-top:1.2rem;
+    padding-top:.9rem;
+    border-top:1px dashed var(--rule);
+    display:flex;
+    flex-wrap:wrap;
+    gap:.4rem 2.5rem;
+  }
+  .specs span{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.72rem;
+    letter-spacing:.06em;
+    color:var(--graphite);
+  }
+  .specs b{color:var(--ink);font-weight:400}
+
+  .close{
+    border-top:1px solid var(--rule);
+    padding-top:2rem;
+    margin-top:1rem;
+  }
+  .close p{margin:.4rem 0;color:#2A2F2C}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <a class="back mono" href="index.html">&larr; Tony Chen</a>
+
+  <h1>Projects</h1>
+
+  <article>
+    <span class="mono">Optics &nbsp;/&nbsp; 2025&ndash;2026</span>
+    <h2>Automated tracking telescope</h2>
+    <ul>
+      <li>Locates and tracks deep-sky objects using two stepper motors on independent axes.</li>
+      <li>Camera attachment for long-exposure astrophotography, plus swappable eyepieces for variable magnification.</li>
+      <li>Shutter system for brightness control, targeting enough resolution to make out Jovian bands and Saturn's rings.</li>
+    </ul>
+    <div class="specs">
+      <span>Target magnification &nbsp;<b>200&times;</b></span>
+      <span>Actuation &nbsp;<b>2&times; stepper</b></span>
+    </div>
+  </article>
+
+  <article>
+    <span class="mono">Vehicles &nbsp;/&nbsp; 2024&ndash;2025</span>
+    <h2>Custom RC race car</h2>
+    <ul>
+      <li>3D-printed chassis with a dual-motor drivetrain and independent electronic speed controllers.</li>
+      <li>Ackermann steering geometry so inner and outer wheels track at distinct angles &mdash; tighter turns, no tire scrub.</li>
+      <li>15&deg; caster angle for self-aligning torque and straight-line stability at speed.</li>
+      <li>Printed structural parts combined with sourced rod ends for the load-bearing linkages.</li>
+    </ul>
+    <div class="specs">
+      <span>Power &nbsp;<b>5200 mAh / 11.1 V</b></span>
+      <span>Drive &nbsp;<b>Dual motor, 2&times; ESC</b></span>
+    </div>
+  </article>
+
+  <article>
+    <span class="mono">Vehicles &nbsp;/&nbsp; 2024&ndash;2025</span>
+    <h2>Competition electric vehicle</h2>
+    <ul>
+      <li>Built for maximum speed while stopping within centimeter accuracy of a set target distance.</li>
+      <li>The whole problem is the trade: every bit of acceleration has to be paid back in controlled deceleration.</li>
+    </ul>
+    <div class="specs">
+      <span>Tolerance &nbsp;<b>&plusmn;1 cm</b></span>
+      <span>Event &nbsp;<b>Science Olympiad</b></span>
+    </div>
+  </article>
+
+  <article>
+    <span class="mono">Robotics &nbsp;/&nbsp; 2023&ndash;2026</span>
+    <h2>FTC robotics team lead</h2>
+    <ul>
+      <li>Sole club leader: recruiting, team organization, fundraising, and direction of design, build, programming, and competition.</li>
+      <li>Modeled the complete robot chassis from scratch in Fusion 360 using goBILDA components &mdash; a formal CAD phase the team had never had before.</li>
+      <li>Closed the equipment funding gap with a crowdfunding push and a team bake sale.</li>
+      <li>Wrote robot control code in Java.</li>
+    </ul>
+    <div class="specs">
+      <span>Recruiting &nbsp;<b>~80 of 600 students</b></span>
+      <span>Raised &nbsp;<b>~$600</b></span>
+      <span>Years leading &nbsp;<b>3</b></span>
+    </div>
+  </article>
+
+  <div class="close">
+    <p>Tools: Autodesk Fusion 360, FDM 3D printing, CNC milling, Java, Python.</p>
+    <p><a href="Tony_Chen_Resume.pdf">Full resume (PDF)</a> &nbsp;&middot;&nbsp; <a href="mailto:chentony0117@gmail.com">chentony0117@gmail.com</a></p>
+  </div>
+
+</div>
+
+</body>
+</html>
