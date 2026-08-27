@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tony Chen — Electrical &amp; Computer Engineering</title>
+<meta name="description" content="Tony Chen builds robots, vehicles, and telescopes. Electrical and computer engineering student at UCLA.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,400;12..96,75..100,700;12..96,75..100,800&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#E4E7E3;
+    --paper-2:#EDEFEB;
+    --ink:#171A19;
+    --graphite:#5C635F;
+    --rule:#B9C0BA;
+    --blue:#1B3AC4;
+    --brass:#B8801F;
+    --grid:rgba(27,58,196,.055);
+    --shell:min(1100px,92vw);
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+
+  html{scroll-behavior:smooth}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+  body{
+    margin:0;
+    background-color:var(--paper);
+    background-image:
+      linear-gradient(var(--grid) 1px,transparent 1px),
+      linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+    background-size:26px 26px;
+    color:var(--ink);
+    font-family:"Instrument Sans",system-ui,sans-serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .shell{width:var(--shell);margin:0 auto}
+
+  a{color:var(--blue);text-underline-offset:3px;text-decoration-thickness:1px}
+  a:focus-visible,button:focus-visible{outline:2.5px solid var(--brass);outline-offset:3px;border-radius:2px}
+
+  .mono{
+    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    font-size:.7rem;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    color:var(--graphite);
+  }
+
+  /* ---------- dimension line: the page annotates itself ---------- */
+  .dim{position:relative;height:1px;background:var(--rule);margin:0}
+  .dim::before,.dim::after{
+    content:"";position:absolute;top:-5px;width:1px;height:11px;background:var(--rule);
+  }
+  .dim::before{left:0}
+  .dim::after{right:0}
+  .dim span{
+    position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+    background:var(--paper);padding:0 .7em;white-space:nowrap;
+  }
+
+  /* ---------- header sheet bar ---------- */
+  .sheetbar{
+    border-bottom:1px solid var(--rule);
+    padding:.9rem 0;
+    display:flex;gap:1.5rem;justify-content:space-between;align-items:baseline;flex-wrap:wrap;
+  }
+
+  /* ---------- hero ---------- */
+  .hero{padding:clamp(3rem,9vw,6.5rem) 0 clamp(2.5rem,6vw,4rem)}
+  .hero h1{
+    font-family:"Bricolage Grotesque",sans-serif;
+    font-variation-settings:"wdth" 88;
+    font-weight:800;
+    font-size:clamp(3rem,12.5vw,8.5rem);
+    line-height:.86;
+    letter-spacing:-.03em;
+    margin:.6rem 0 1.4rem;
+  }
+  .hero h1 em{font-style:normal;color:var(--blue)}
+  .lede{
+    font-size:clamp(1.05rem,2.1vw,1.3rem);
+    max-width:34em;
+    color:#2A2F2C;
+    margin:1.6rem 0 0;
+  }
+  .cta-row{display:flex;gap:.8rem;flex-wrap:wrap;margin-top:2rem}
+  .btn{
+    display:inline-block;
+    font-family:"IBM Plex Mono",monospace;
+    font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;
+    padding:.78rem 1.3rem;
+    border:1px solid var(--ink);
+    text-decoration:none;color:var(--ink);
+    background:transparent;
+    transition:background .18s ease,color .18s ease;
+  }
+  .btn:hover{background:var(--ink);color:var(--paper-2)}
+  .btn--fill{background:var(--blue);border-color:var(--blue);color:#fff}
+  .btn--fill:hover{background:var(--ink);border-color:var(--ink);color:#fff}
+
+  /* ---------- sections ---------- */
+  section{padding:clamp(2.6rem,6vw,4.5rem) 0}
+  .sechead{display:flex;align-items:baseline;gap:1.1rem;margin-bottom:1.8rem}
+  .sechead .cut{
+    font-family:"IBM Plex Mono",monospace;font-size:.72rem;letter-spacing:.1em;
+    color:var(--blue);border:1px solid var(--blue);padding:.15rem .5rem;flex:none;
+  }
+  .sechead h2{
+    font-family:"Bricolage Grotesque",sans-serif;
+    font-variation-settings:"wdth" 92;
+    font-weight:700;
+    font-size:clamp(1.35rem,3.2vw,2rem);
+    letter-spacing:-.015em;
+    margin:0;flex:none;
+  }
+  .sechead .fill{flex:1;height:1px;background:var(--rule);transform:translateY(-.35em)}
+
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,4vw,3rem)}
+  @media (max-width:760px){.grid2{grid-template-columns:1fr}}
+
+  .entry{padding:1.1rem 0;border-top:1px solid var(--rule)}
+  .entry:first-of-type{border-top:none;padding-top:0}
+  .entry h3{
+    font-family:"Instrument Sans",sans-serif;font-weight:600;font-size:1.06rem;
+    margin:0 0 .1rem;letter-spacing:-.005em;
+  }
+  .entry .meta{margin-bottom:.55rem}
+  .entry p{margin:.35rem 0;color:#2A2F2C}
+  .entry ul{margin:.5rem 0 0;padding-left:1.05rem}
+  .entry li{margin-bottom:.35rem;color:#2A2F2C}
+  .entry li::marker{color:var(--blue)}
+
+  /* ---------- parts table (skills) ---------- */
+  .parts{width:100%;border-collapse:collapse}
+  .parts th,.parts td{text-align:left;padding:.7rem .6rem;border-bottom:1px solid var(--rule);vertical-align:top}
+  .parts th{
+    width:9.5rem;
+    font-family:"IBM Plex Mono",monospace;font-size:.7rem;letter-spacing:.11em;
+    text-transform:uppercase;color:var(--graphite);font-weight:500;
+  }
+  .parts td{font-size:.97rem}
+  @media (max-width:560px){
+    .parts th,.parts td{display:block;width:auto;border-bottom:none;padding:.15rem .1rem}
+    .parts tr{display:block;border-bottom:1px solid var(--rule);padding:.7rem 0}
+  }
+
+  /* ---------- project cards ---------- */
+  .proj{
+    background:var(--paper-2);
+    border:1px solid var(--rule);
+    padding:clamp(1.2rem,2.6vw,1.7rem);
+    display:flex;flex-direction:column;
+  }
+  .proj .tag{color:var(--brass);margin-bottom:.7rem}
+  .proj h3{
+    font-family:"Bricolage Grotesque",sans-serif;
+    font-variation-settings:"wdth" 90;font-weight:700;
+    font-size:1.2rem;margin:0 0 .6rem;line-height:1.15;
+  }
+  .proj ul{margin:.2rem 0 0;padding-left:1.05rem}
+  .proj li{margin-bottom:.45rem;font-size:.95rem}
+  .proj li::marker{color:var(--blue)}
+  .specs{margin-top:1.1rem;padding-top:.8rem;border-top:1px dashed var(--rule)}
+  .specs div{display:flex;justify-content:space-between;gap:1rem;padding:.2rem 0}
+  .specs .k{font-family:"IBM Plex Mono",monospace;font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;color:var(--graphite)}
+  .specs .v{font-family:"IBM Plex Mono",monospace;font-size:.72rem;color:var(--ink);text-align:right}
+
+  .projgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.1rem}
+  @media (max-width:900px){.projgrid{grid-template-columns:1fr}}
+
+  /* ---------- title block footer ---------- */
+  footer{padding-bottom:3.5rem}
+  .titleblock{border:1px solid var(--ink);background:var(--paper-2)}
+  .tb-row{display:grid;grid-template-columns:1.6fr 1fr 1fr;border-bottom:1px solid var(--ink)}
+  .tb-row:last-child{border-bottom:none}
+  .tb-cell{padding:.85rem 1rem;border-right:1px solid var(--ink)}
+  .tb-cell:last-child{border-right:none}
+  .tb-cell .k{display:block;margin-bottom:.25rem}
+  .tb-cell .v{font-size:.98rem;font-weight:500;word-break:break-word}
+  .tb-cell .v a{text-decoration:none}
+  .tb-cell .v a:hover{text-decoration:underline}
+  .tb-name{
+    font-family:"Bricolage Grotesque",sans-serif;font-variation-settings:"wdth" 88;
+    font-weight:800;font-size:1.5rem;letter-spacing:-.02em;
+  }
+  @media (max-width:700px){
+    .tb-row{grid-template-columns:1fr}
+    .tb-cell{border-right:none;border-bottom:1px solid var(--rule)}
+    .tb-row:last-child .tb-cell:last-child{border-bottom:none}
+  }
+
+  /* ---------- reveal ---------- */
+  .rise{opacity:0;transform:translateY(14px);transition:opacity .5s ease,transform .5s ease}
+  .rise.in{opacity:1;transform:none}
+  @media (prefers-reduced-motion:reduce){
+    .rise{opacity:1;transform:none;transition:none}
+    .btn{transition:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <div class="sheetbar">
+    <span class="mono">Tony Chen &nbsp;/&nbsp; Sheet 01 of 01</span>
+    <span class="mono">Electrical &amp; Computer Engineering &nbsp;/&nbsp; UCLA</span>
+  </div>
+
+  <header class="hero">
+    <span class="mono">Designs it &nbsp;&middot;&nbsp; machines it &nbsp;&middot;&nbsp; programs it &nbsp;&middot;&nbsp; drives it</span>
+    <h1>Tony<br><em>Chen</em></h1>
+    <div class="dim"><span class="mono">2022 &mdash; present &nbsp;/&nbsp; robotics, vehicles, optics</span></div>
+    <p class="lede">I build things that move. Over the last four years that has meant a competition robot, a 3D-printed race car with real Ackermann steering, an electric vehicle tuned to stop within a centimeter, and a telescope that finds its own targets.</p>
+    <div class="cta-row">
+      <a class="btn btn--fill" href="Tony_Chen_Resume.pdf">Download resume (PDF)</a>
+      <a class="btn" href="#contact">Get in touch</a>
+    </div>
+  </header>
+
+  <section id="work" class="rise">
+    <div class="sechead">
+      <span class="cut">A&mdash;A</span>
+      <h2>Things I've built</h2>
+      <span class="fill"></span>
+    </div>
+
+    <div class="projgrid">
+
+      <article class="proj">
+        <span class="mono tag">Optics &nbsp;/&nbsp; 2025&ndash;2026</span>
+        <h3>Automated tracking telescope</h3>
+        <ul>
+          <li>Locates and tracks deep-sky objects using two stepper motors on independent axes.</li>
+          <li>Camera attachment for long-exposure astrophotography, plus swappable eyepieces.</li>
+          <li>Shutter system for brightness control, targeting resolution of Jovian bands and Saturn's rings.</li>
+        </ul>
+        <div class="specs">
+          <div><span class="k">Target mag.</span><span class="v">200&times;</span></div>
+          <div><span class="k">Actuation</span><span class="v">2&times; stepper</span></div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <span class="mono tag">Vehicles &nbsp;/&nbsp; 2024&ndash;2025</span>
+        <h3>Custom RC race car</h3>
+        <ul>
+          <li>3D-printed chassis with a dual-motor drivetrain and independent electronic speed controllers.</li>
+          <li>Ackermann steering geometry so inner and outer wheels track at distinct angles &mdash; tighter turns, no tire scrub.</li>
+          <li>15&deg; caster angle for self-aligning torque and straight-line stability at speed.</li>
+        </ul>
+        <div class="specs">
+          <div><span class="k">Power</span><span class="v">5200 mAh / 11.1 V</span></div>
+          <div><span class="k">Drive</span><span class="v">Dual motor, 2&times; ESC</span></div>
+        </div>
+      </article>
+
+      <article class="proj">
+        <span class="mono tag">Vehicles &nbsp;/&nbsp; 2024&ndash;2025</span>
+        <h3>Competition electric vehicle</h3>
+        <ul>
+          <li>Built for maximum speed while stopping within centimeter accuracy of a set target distance.</li>
+          <li>The whole problem is the trade: every bit of acceleration has to be paid back in controlled deceleration.</li>
+        </ul>
+        <div class="specs">
+          <div><span class="k">Tolerance</span><span class="v">&plusmn;1 cm</span></div>
+          <div><span class="k">Event</span><span class="v">Science Olympiad</span></div>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <section id="robotics" class="rise">
+    <div class="sechead">
+      <span class="cut">B&mdash;B</span>
+      <h2>Leading the robotics team</h2>
+      <span class="fill"></span>
+    </div>
+    <div class="grid2">
+      <div>
+        <div class="entry">
+          <h3>Leader, Robotics Club &amp; FTC Team</h3>
+          <div class="mono meta">Shady Side Academy &nbsp;/&nbsp; 2023&ndash;2026</div>
+          <ul>
+            <li>Sole club leader: recruiting, team organization, fundraising, and direction of design, build, programming, and competition.</li>
+            <li>Modeled the complete robot chassis from scratch in Fusion 360 using goBILDA components &mdash; a formal CAD phase the team had never had before.</li>
+            <li>Closed the equipment funding gap with a crowdfunding push and a team bake sale.</li>
+            <li>Wrote robot control code in Java.</li>
+          </ul>
+        </div>
+      </div>
+      <div>
+        <div class="entry">
+          <h3>By the numbers</h3>
+          <div class="specs" style="margin-top:.4rem;border-top:none;padding-top:0">
+            <div><span class="k">Signups at club fair</span><span class="v">~80 of 600 students</span></div>
+            <div><span class="k">Raised for build kit</span><span class="v">~$600</span></div>
+            <div><span class="k">Hours / week (2025)</span><span class="v">~25</span></div>
+            <div><span class="k">Years leading</span><span class="v">3</span></div>
+          </div>
+        </div>
+        <div class="entry">
+          <h3>Science Olympiad</h3>
+          <div class="mono meta">Pennsylvania &nbsp;/&nbsp; 2024&ndash;2026</div>
+          <ul>
+            <li>3rd place, Bungee &mdash; Penn State Invitational, Feb 2025.</li>
+            <li>3rd place, Dynamic Planet &mdash; Solon Invitational, Feb 2025.</li>
+            <li>Also competed in Material Science, Electric Vehicle, and Optics.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills" class="rise">
+    <div class="sechead">
+      <span class="cut">C&mdash;C</span>
+      <h2>Tools &amp; capabilities</h2>
+      <span class="fill"></span>
+    </div>
+    <table class="parts">
+      <tbody>
+        <tr><th scope="row">Programming</th><td>Java, Python</td></tr>
+        <tr><th scope="row">CAD / CAM</th><td>Autodesk Fusion 360 &mdash; full-assembly modeling, part design, CAM toolpaths</td></tr>
+        <tr><th scope="row">Fabrication</th><td>FDM 3D printing for plastic parts, CNC milling for metallic parts, mechanical assembly</td></tr>
+        <tr><th scope="row">Electronics</th><td>Motor drive, electronic speed controllers, stepper control, LiPo power systems</td></tr>
+        <tr><th scope="row">Math &amp; physics</th><td>Linear algebra, differential equations, calculus-based mechanics and E&amp;M</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section id="education" class="rise">
+    <div class="sechead">
+      <span class="cut">D&mdash;D</span>
+      <h2>Education</h2>
+      <span class="fill"></span>
+    </div>
+    <div class="grid2">
+      <div class="entry">
+        <h3>University of California, Los Angeles</h3>
+        <div class="mono meta">B.S. Electrical &amp; Computer Engineering &nbsp;/&nbsp; expected 2030</div>
+      </div>
+      <div class="entry">
+        <h3>Shady Side Academy</h3>
+        <div class="mono meta">Pittsburgh, PA &nbsp;/&nbsp; 2022&ndash;2026 &nbsp;/&nbsp; GPA 4.07</div>
+        <ul>
+          <li>National Merit Semifinalist (Pennsylvania).</li>
+          <li>ACT 35 composite. AP Calculus BC (5), AP Computer Science A (5), AP Physics C.</li>
+          <li>Computer Science Departmental Associate; Writing Center Scribe.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="offhours" class="rise">
+    <div class="sechead">
+      <span class="cut">E&mdash;E</span>
+      <h2>Away from the workbench</h2>
+      <span class="fill"></span>
+    </div>
+    <div class="grid2">
+      <div class="entry">
+        <h3>Music</h3>
+        <p>First violin with the Pittsburgh Youth Philharmonic Orchestra since 2019. ABRSM Piano Grade 8 and Music Theory Grade 5, both with Distinction. Piano since 2014, violin since 2018.</p>
+      </div>
+      <div class="entry">
+        <h3>Sport</h3>
+        <p>Junior varsity soccer, basketball, and track &amp; field &mdash; 100&nbsp;m and long jump.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact" class="rise">
+    <div class="dim" style="margin-bottom:2.2rem"><span class="mono">Title block</span></div>
+    <div class="titleblock">
+      <div class="tb-row">
+        <div class="tb-cell">
+          <span class="mono k">Name</span>
+          <span class="v tb-name">Tony Chen</span>
+        </div>
+        <div class="tb-cell">
+          <span class="mono k">Email</span>
+          <span class="v"><a href="mailto:chentony0117@gmail.com">chentony0117@gmail.com</a></span>
+        </div>
+        <div class="tb-cell">
+          <span class="mono k">Phone</span>
+          <span class="v"><a href="tel:+14129448402">412-944-8402</a></span>
+        </div>
+      </div>
+      <div class="tb-row">
+        <div class="tb-cell">
+          <span class="mono k">Field</span>
+          <span class="v">Electrical &amp; Computer Engineering</span>
+        </div>
+        <div class="tb-cell">
+          <span class="mono k">Based in</span>
+          <span class="v">Pittsburgh, PA</span>
+        </div>
+        <div class="tb-cell">
+          <span class="mono k">Full resume</span>
+          <span class="v"><a href="Tony_Chen_Resume.pdf">Download PDF</a></span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  (function(){
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var items = document.querySelectorAll('.rise');
+    if (reduce || !('IntersectionObserver' in window)) {
+      items.forEach(function(el){ el.classList.add('in'); });
+      return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+    items.forEach(function(el){ io.observe(el); });
+  })();
+</script>
+
+</body>
+</html>
