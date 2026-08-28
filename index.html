@@ -5,9 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tony Chen</title>
 <meta name="description" content="Tony Chen — electrical and computer engineering student at UCLA.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,800&family=IBM+Plex+Mono:wght@400&family=Instrument+Sans:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
     --paper:#E4E7E3;
@@ -15,6 +12,7 @@
     --graphite:#5C635F;
     --rule:#B9C0BA;
     --blue:#1B3AC4;
+    --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
   }
 
   *,*::before,*::after{box-sizing:border-box}
@@ -23,98 +21,125 @@
     margin:0;
     min-height:100vh;
     display:flex;
-    flex-direction:column;
-    justify-content:center;
+    align-items:center;
     padding:clamp(2rem,7vw,5rem) clamp(1.5rem,6vw,5rem);
     background:var(--paper);
     color:var(--ink);
-    font-family:"Instrument Sans",system-ui,sans-serif;
+    font-family:var(--sans);
     font-size:17px;
-    line-height:1.6;
+    line-height:1.55;
     -webkit-font-smoothing:antialiased;
   }
 
-  main{width:100%;max-width:44rem}
+  main{
+    width:100%;
+    max-width:62rem;
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:1.15fr .85fr;
+    gap:clamp(2rem,5vw,4rem);
+    align-items:center;
+  }
 
-  .eyebrow{
-    font-family:"IBM Plex Mono",ui-monospace,monospace;
+  .label{
     font-size:.72rem;
-    letter-spacing:.14em;
+    font-weight:700;
+    letter-spacing:.16em;
     text-transform:uppercase;
     color:var(--graphite);
     margin:0;
   }
 
   h1{
-    font-family:"Bricolage Grotesque",sans-serif;
-    font-variation-settings:"wdth" 88;
-    font-weight:800;
-    font-size:clamp(3.2rem,13vw,7rem);
-    line-height:.88;
-    letter-spacing:-.03em;
-    margin:.5rem 0 0;
+    font-size:clamp(3rem,10vw,5.75rem);
+    font-weight:700;
+    line-height:.9;
+    letter-spacing:-.035em;
+    margin:.6rem 0 0;
   }
 
   hr{
     border:none;
     border-top:1px solid var(--rule);
-    margin:2rem 0;
+    margin:1.8rem 0;
   }
 
   p.bio{
-    font-size:clamp(1.05rem,2.2vw,1.22rem);
-    max-width:32em;
+    font-size:clamp(1.1rem,2.3vw,1.35rem);
+    letter-spacing:-.01em;
+    max-width:22em;
     margin:0;
     color:#2A2F2C;
   }
 
   nav{
-    margin-top:2.5rem;
+    margin-top:2.2rem;
     display:flex;
     flex-wrap:wrap;
-    gap:.6rem 2rem;
+    gap:.6rem 1.9rem;
   }
 
   nav a{
-    font-family:"IBM Plex Mono",ui-monospace,monospace;
-    font-size:.78rem;
-    letter-spacing:.1em;
+    font-size:.76rem;
+    font-weight:700;
+    letter-spacing:.13em;
     text-transform:uppercase;
     color:var(--ink);
     text-decoration:none;
     border-bottom:1.5px solid var(--blue);
-    padding-bottom:.2rem;
+    padding-bottom:.22rem;
   }
   nav a:hover{color:var(--blue)}
   nav a:focus-visible{outline:2.5px solid var(--blue);outline-offset:4px}
 
+  .portrait{
+    width:100%;
+    display:block;
+    aspect-ratio:4/5;
+    object-fit:cover;
+    border:1px solid var(--rule);
+  }
+
   footer{
-    margin-top:3.5rem;
-    font-family:"IBM Plex Mono",ui-monospace,monospace;
+    margin-top:2.6rem;
     font-size:.72rem;
-    letter-spacing:.08em;
+    font-weight:700;
+    letter-spacing:.12em;
+    text-transform:uppercase;
     color:var(--graphite);
   }
-  footer a{color:var(--graphite)}
+
+  @media (max-width:760px){
+    body{align-items:flex-start}
+    main{grid-template-columns:1fr;gap:2rem}
+    .col-photo{order:-1}
+    .portrait{aspect-ratio:3/2}
+  }
 </style>
 </head>
 <body>
 
 <main>
-  <p class="eyebrow">Electrical &amp; Computer Engineering &nbsp;/&nbsp; UCLA</p>
-  <h1>Tony<br>Chen</h1>
+  <div class="col-text">
+    <p class="label">Electrical &amp; Computer Engineering &nbsp;/&nbsp; UCLA</p>
+    <h1>Tony<br>Chen</h1>
 
-  <hr>
+    <hr>
 
-  <p class="bio">Talent in the hands of a Jester.</p>
+    <p class="bio">Talent in the hands of a Jester.</p>
 
-  <nav>
-    <a href="projects.html">Projects</a>
-    <a href="Tony_Chen_Resume.pdf">Resume (PDF)</a>
-    <a href="mailto:tonychen1@ucla.edu">Email</a>
-  </nav>
+    <nav>
+      <a href="projects.html" target="_blank" rel="noopener">Projects</a>
+      <a href="Tony_Chen_Resume.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+      <a href="mailto:tonychen1@ucla.edu" target="_blank" rel="noopener">Email</a>
+    </nav>
 
-  <footer>Pittsburgh, PA</footer>
+    <footer>Pittsburgh, PA</footer>
+  </div>
+
+  <div class="col-photo">
+    <img class="portrait" src="img/portrait.jpg" alt="Tony Chen holding a lobster on a boat off the coast.">
+  </div>
 </main>
 
 </body>
