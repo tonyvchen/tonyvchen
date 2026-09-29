@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resume — Tony Chen</title>
+<meta name="description" content="Resume — Tony Chen, electrical and computer engineering student at UCLA.">
+<style>
+  :root{
+    --paper:#E4E7E3;
+    --ink:#171A19;
+    --graphite:#5C635F;
+    --rule:#B9C0BA;
+    --blue:#1B3AC4;
+    --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
+  }
+
+  *,*::before,*::after{box-sizing:border-box}
+
+  body{
+    margin:0;
+    min-height:100vh;
+    padding:clamp(1.5rem,4vw,2.5rem) clamp(1rem,5vw,5rem) clamp(2.5rem,5vw,4rem);
+    background:var(--paper);
+    color:var(--ink);
+    font-family:var(--sans);
+    font-size:17px;
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .shell{max-width:50rem;margin:0 auto}
+
+  .bar{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.7rem 1.8rem;
+    justify-content:space-between;
+    align-items:baseline;
+    margin-bottom:1.4rem;
+  }
+
+  .bar a{
+    font-size:.76rem;
+    font-weight:700;
+    letter-spacing:.13em;
+    text-transform:uppercase;
+    color:var(--ink);
+    text-decoration:none;
+    border-bottom:1.5px solid var(--blue);
+    padding-bottom:.22rem;
+  }
+  .bar a:hover{color:var(--blue)}
+  .bar a:focus-visible{outline:2.5px solid var(--blue);outline-offset:4px}
+
+  #pages canvas{
+    display:block;
+    width:100%;
+    height:auto;
+    margin-bottom:1.1rem;
+    border:1px solid var(--rule);
+    background:#fff;
+  }
+  #pages canvas:last-child{margin-bottom:0}
+
+  .note{
+    font-size:.82rem;
+    letter-spacing:.03em;
+    color:var(--graphite);
+    text-align:center;
+    padding:3rem 1rem;
+    border:1px solid var(--rule);
+    background:#fff;
+  }
+  .note a{color:var(--blue)}
+</style>
+</head>
+<body>
+
+<div class="shell">
+
+  <div class="bar">
+    <a href="index.html">&larr; Tony Chen</a>
+    <a href="Tony_Chen_Resume.pdf" download>Download PDF</a>
+  </div>
+
+  <div id="pages"></div>
+
+  <div id="status" class="note">Loading resume&hellip;</div>
+
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+(function () {
+  var FILE   = 'Tony_Chen_Resume.pdf';
+  var pages  = document.getElementById('pages');
+  var status = document.getElementById('status');
+
+  function fail(msg) {
+    if (!status.parentNode) return;
+    status.innerHTML = msg + ' <a href="' + FILE + '">Open the PDF directly &rarr;</a>';
+  }
+
+  if (!window.pdfjsLib) {
+    fail("The viewer couldn't load.");
+    return;
+  }
+
+  pdfjsLib.GlobalWorkerOptions.workerSrc =
+    'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+  var doc = null;
+  var lastWidth = 0;
+  var rendering = false;
+
+  function render() {
+    if (!doc || rendering) return;
+    var width = pages.clientWidth;
+    if (!width) return;
+    rendering = true;
+
+    // Cap the backing store so high-DPI screens don't allocate needlessly.
+    var dpr = Math.min(window.devicePixelRatio || 1, 2);
+    var jobs = [];
+    for (var i = 1; i <= doc.numPages; i++) jobs.push(doc.getPage(i));
+
+    Promise.all(jobs).then(function (loaded) {
+      var frag  = document.createDocumentFragment();
+      var chain = Promise.resolve();
+
+      loaded.forEach(function (page) {
+        var base   = page.getViewport({ scale: 1 });
+        var vp     = page.getViewport({ scale: (width / base.width) * dpr });
+        var canvas = document.createElement('canvas');
+
+        canvas.width  = Math.floor(vp.width);
+        canvas.height = Math.floor(vp.height);
+        canvas.setAttribute('role', 'img');
+        canvas.setAttribute('aria-label', 'Resume page ' + page.pageNumber);
+        frag.appendChild(canvas);
+
+        chain = chain.then(function () {
+          return page.render({
+            canvasContext: canvas.getContext('2d'),
+            viewport: vp
+          }).promise;
+        });
+      });
+
+      return chain.then(function () {
+        pages.innerHTML = '';
+        pages.appendChild(frag);
+        if (status.parentNode) status.parentNode.removeChild(status);
+        lastWidth = width;
+        rendering = false;
+      });
+    }).catch(function () {
+      rendering = false;
+      fail("The viewer couldn't render this file.");
+    });
+  }
+
+  pdfjsLib.getDocument(FILE).promise.then(function (pdf) {
+    doc = pdf;
+    render();
+  }).catch(function () {
+    fail("The resume couldn't be loaded.");
+  });
+
+  // Re-render on meaningful width changes so the text stays sharp.
+  var timer = null;
+  window.addEventListener('resize', function () {
+    if (!doc) return;
+    clearTimeout(timer);
+    timer = setTimeout(function () {
+      if (Math.abs(pages.clientWidth - lastWidth) > 40) render();
+    }, 250);
+  });
+})();
+</script>
+
+</body>
+</html>
