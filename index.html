@@ -5,142 +5,83 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tony Chen</title>
 <meta name="description" content="Tony Chen — electrical and computer engineering student at UCLA.">
-<style>
-  :root{
-    --paper:#E4E7E3;
-    --ink:#171A19;
-    --graphite:#5C635F;
-    --rule:#B9C0BA;
-    --blue:#1B3AC4;
-    --sans:"Helvetica Neue",Helvetica,Arial,sans-serif;
-  }
-
-  *,*::before,*::after{box-sizing:border-box}
-
-  body{
-    margin:0;
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    padding:clamp(2rem,7vw,5rem) clamp(1.5rem,6vw,5rem);
-    background:var(--paper);
-    color:var(--ink);
-    font-family:var(--sans);
-    font-size:17px;
-    line-height:1.55;
-    -webkit-font-smoothing:antialiased;
-  }
-
-  main{
-    width:100%;
-    max-width:62rem;
-    margin:0 auto;
-    display:grid;
-    grid-template-columns:1.15fr .85fr;
-    gap:clamp(2rem,5vw,4rem);
-    align-items:center;
-  }
-
-  .label{
-    font-size:.72rem;
-    font-weight:700;
-    letter-spacing:.16em;
-    text-transform:uppercase;
-    color:var(--graphite);
-    margin:0;
-  }
-
-  h1{
-    font-size:clamp(3rem,10vw,5.75rem);
-    font-weight:700;
-    line-height:.9;
-    letter-spacing:-.035em;
-    margin:.6rem 0 0;
-  }
-
-  hr{
-    border:none;
-    border-top:1px solid var(--rule);
-    margin:1.8rem 0;
-  }
-
-  p.bio{
-    font-size:clamp(1.1rem,2.3vw,1.35rem);
-    letter-spacing:-.01em;
-    max-width:22em;
-    margin:0;
-    color:#2A2F2C;
-  }
-
-  nav{
-    margin-top:2.2rem;
-    display:flex;
-    flex-wrap:wrap;
-    gap:.6rem 1.9rem;
-  }
-
-  nav a{
-    font-size:.76rem;
-    font-weight:700;
-    letter-spacing:.13em;
-    text-transform:uppercase;
-    color:var(--ink);
-    text-decoration:none;
-    border-bottom:1.5px solid var(--blue);
-    padding-bottom:.22rem;
-  }
-  nav a:hover{color:var(--blue)}
-  nav a:focus-visible{outline:2.5px solid var(--blue);outline-offset:4px}
-
-  .portrait{
-    width:100%;
-    display:block;
-    aspect-ratio:4/5;
-    object-fit:cover;
-    border:1px solid var(--rule);
-  }
-
-  footer{
-    margin-top:2.6rem;
-    font-size:.72rem;
-    font-weight:700;
-    letter-spacing:.12em;
-    text-transform:uppercase;
-    color:var(--graphite);
-  }
-
-  @media (max-width:760px){
-    body{align-items:flex-start}
-    main{grid-template-columns:1fr;gap:2rem}
-    .col-photo{order:-1}
-    .portrait{aspect-ratio:3/2}
-  }
-</style>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>
+/* Set the theme before first paint so the page never flashes the wrong one. */
+(function(){try{var t=localStorage.getItem('theme');if(!t)t=matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light';document.documentElement.setAttribute('data-theme',t);}catch(e){document.documentElement.setAttribute('data-theme','light');}})();
+</script>
 </head>
-<body>
+<body class="home">
 
-<main>
-  <div class="col-text">
-    <p class="label">Electrical &amp; Computer Engineering &nbsp;/&nbsp; UCLA</p>
-    <h1>Tony<br>Chen</h1>
-
-    <hr>
-
-    <p class="bio">Talent in the hands of a Jester.</p>
-
-    <nav>
+<header class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">
+      <svg viewBox="0 0 100 100" aria-hidden="true">
+        <circle cx="50" cy="50" r="49" fill="currentColor"/>
+        <g stroke="var(--paper)" fill="none" stroke-linecap="round">
+          <path stroke-width="17" d="M24 29.68 A33 33 0 0 1 51.15 17.02"/>
+          <path stroke-width="8"  d="M25.55 44.8 L14.79 42.52"/>
+          <path stroke-width="17" d="M76 70.32 A33 33 0 0 1 48.85 82.98"/>
+          <path stroke-width="8"  d="M74.45 55.2 L85.21 57.48"/>
+        </g>
+        <circle cx="50" cy="50" r="18" fill="var(--paper)"/>
+        <circle cx="50" cy="50" r="7" fill="currentColor"/>
+      </svg>
+      <span>Tony Chen</span>
+    </a>
+    <nav class="nav-links">
+      <a href="index.html" aria-current="page">Home</a>
       <a href="projects.html">Projects</a>
       <a href="resume.html">Resume</a>
+      <a href="playlist.html">Playlist</a>
       <a href="mailto:tonychen1@ucla.edu">Email</a>
     </nav>
-
-    <footer>Pittsburgh, PA</footer>
+    <button class="toggle" id="theme-toggle" type="button" aria-label="Switch theme">
+      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+        <circle cx="12" cy="12" r="4.2"/>
+        <path d="M12 2.6v2.1M12 19.3v2.1M2.6 12h2.1M19.3 12h2.1M5.3 5.3l1.5 1.5M17.2 17.2l1.5 1.5M18.7 5.3l-1.5 1.5M6.8 17.2l-1.5 1.5"/>
+      </svg>
+      <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/>
+      </svg>
+    </button>
   </div>
+</header>
 
-  <div class="col-photo">
-    <img class="portrait" src="img/portrait.jpg" alt="Tony Chen holding a lobster on a boat off the coast.">
+<main class="shell">
+  <div class="home-grid">
+    <div>
+      <p class="label">Electrical &amp; Computer Engineering / UCLA</p>
+      <h1>Tony Chen</h1>
+
+      <hr>
+
+      <p class="tagline">Talent in the hands of a Jester.</p>
+
+      <!-- ===== PLACEHOLDER — replace both paragraphs with your own text ===== -->
+      <p class="bio">I build things that move. Over the last few years that has meant a
+      competition robot, a 3D-printed race car with real Ackermann steering, an electric
+      vehicle tuned to stop within a centimeter of a mark it doesn't learn until minutes
+      before the run, and a telescope that finds its own targets.</p>
+
+      <p class="bio">Most of it starts in Fusion 360 and ends on a print bed or a mill.
+      The summer before college I worked on rover autonomy at NASA, which is where the
+      software half of this caught up with the mechanical half.</p>
+      <!-- ===== END PLACEHOLDER ===== -->
+
+      <p class="home-foot">Los Angeles, CA</p>
+    </div>
+
+    <div class="home-photo">
+      <img class="portrait" src="img/portrait.jpg" alt="Tony Chen holding a lobster on a boat off the coast.">
+    </div>
   </div>
 </main>
 
+<script src="site.js"></script>
 </body>
 </html>

@@ -1,0 +1,391 @@
+/* ---------------------------------------------------------------
+   Tony Chen — shared styles
+   Theme tokens. The no-flash script in each page's <head> resolves
+   the system preference into an explicit data-theme attribute, so
+   only these two states ever apply.
+   --------------------------------------------------------------- */
+
+:root {
+  --paper:   #E4E7E3;
+  --surface: #EDEFEB;
+  --ink:     #171A19;
+  --body:    #2A2F2C;
+  --graphite:#5C635F;
+  --rule:    #B9C0BA;
+  --accent:  #1B3AC4;
+  --shadow:  rgba(23, 26, 25, .10);
+
+  --serif: "EB Garamond", Garamond, "Times New Roman", serif;
+  --shell: 54rem;
+  --radius: 10px;
+}
+
+:root[data-theme="dark"] {
+  --paper:   #151917;
+  --surface: #1D2220;
+  --ink:     #E6E9E4;
+  --body:    #C4CBC5;
+  --graphite:#98A19B;
+  --rule:    #2F3734;
+  --accent:  #93A9FF;
+  --shadow:  rgba(0, 0, 0, .40);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 19px;          /* Garamond runs small; this reads like 16-17px sans */
+  line-height: 1.58;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible {
+  outline: 2.5px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ---------------- shared small-caps label ---------------- */
+
+.label {
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+  color: var(--graphite);
+  margin: 0;
+}
+
+/* ---------------- top navigation bar ---------------- */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: var(--paper);
+  border-bottom: 1px solid var(--rule);
+}
+
+.nav-inner {
+  max-width: var(--shell);
+  margin: 0 auto;
+  padding: .85rem clamp(1.1rem, 5vw, 2rem);
+  display: flex;
+  align-items: center;
+  gap: 1rem 1.5rem;
+  flex-wrap: wrap;
+}
+
+/* Brand left, links and toggle pushed right. */
+.brand { margin-right: auto; }
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  text-decoration: none;
+  color: var(--ink);
+  font-size: 1.12rem;
+  font-weight: 600;
+  letter-spacing: -.005em;
+  white-space: nowrap;
+}
+.brand:hover { color: var(--accent); }
+
+.brand svg { width: 1.45em; height: 1.45em; display: block; flex: none; }
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: .4rem 1.45rem;
+  flex-wrap: wrap;
+}
+
+.nav-links a {
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--graphite);
+  padding-bottom: .18rem;
+  border-bottom: 1.5px solid transparent;
+}
+.nav-links a:hover { color: var(--ink); }
+.nav-links a[aria-current="page"] {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+
+/* theme toggle */
+.toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.1rem;
+  height: 2.1rem;
+  padding: 0;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  background: transparent;
+  color: var(--graphite);
+  cursor: pointer;
+}
+.toggle:hover { color: var(--ink); border-color: var(--graphite); }
+.toggle svg { width: 1.05rem; height: 1.05rem; display: block; }
+.toggle .moon { display: none; }
+:root[data-theme="dark"] .toggle .sun  { display: none; }
+:root[data-theme="dark"] .toggle .moon { display: block; }
+
+/* ---------------- page shell ---------------- */
+
+.shell {
+  max-width: var(--shell);
+  margin: 0 auto;
+  padding: clamp(2rem, 5vw, 3.2rem) clamp(1.1rem, 5vw, 2rem) clamp(3rem, 6vw, 4.5rem);
+}
+
+h1 {
+  font-size: clamp(2.3rem, 6.5vw, 3.6rem);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -.02em;
+  margin: .5rem 0 0;
+}
+
+hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 1.6rem 0;
+}
+
+/* ---------------- home ---------------- */
+
+/* The home page is short, so centre it in the viewport instead of
+   leaving a tall empty strip under it. */
+body.home { min-height: 100vh; display: flex; flex-direction: column; }
+body.home .nav { flex: none; }
+body.home .shell { flex: 1 1 auto; display: flex; align-items: center; width: 100%; }
+body.home .home-grid { width: 100%; }
+
+.home-grid {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: clamp(1.8rem, 5vw, 3.4rem);
+  align-items: start;
+}
+
+.bio {
+  font-size: 1.07rem;
+  color: var(--body);
+  max-width: 34em;
+  margin: 0 0 1rem;
+}
+.bio:last-of-type { margin-bottom: 0; }
+
+.tagline {
+  font-size: 1.22rem;
+  font-style: italic;
+  color: var(--ink);
+  margin: 0 0 1.3rem;
+}
+
+.portrait {
+  width: 100%;
+  display: block;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+.home-foot {
+  margin-top: 2.4rem;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+
+/* ---------------- section headings ---------------- */
+
+h2.sec {
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .17em;
+  text-transform: uppercase;
+  color: var(--graphite);
+  border-bottom: 1px solid var(--ink);
+  padding-bottom: .55rem;
+  margin: 3rem 0 0;
+}
+
+/* ---------------- project entries ---------------- */
+
+.entry {
+  display: grid;
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  gap: clamp(1.3rem, 3.5vw, 2.4rem);
+  align-items: start;
+  border-top: 1px solid var(--rule);
+  padding: 2.1rem 0;
+}
+.entry:first-of-type { border-top: none; }
+
+.entry img {
+  width: 100%;
+  display: block;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: var(--radius);
+}
+
+.entry h3 {
+  font-size: 1.45rem;
+  font-weight: 600;
+  letter-spacing: -.015em;
+  line-height: 1.12;
+  margin: .4rem 0 .75rem;
+}
+
+.entry ul { margin: 0; padding-left: 1.1rem; }
+.entry li { margin-bottom: .4rem; color: var(--body); }
+.entry li::marker { color: var(--accent); }
+
+.specs {
+  margin-top: 1.1rem;
+  padding-top: .8rem;
+  border-top: 1px dashed var(--rule);
+  display: flex;
+  flex-wrap: wrap;
+  gap: .3rem 2rem;
+}
+.specs span {
+  font-size: .75rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--graphite);
+}
+.specs b {
+  color: var(--ink);
+  font-weight: 400;
+  letter-spacing: .03em;
+  text-transform: none;
+}
+
+.links { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: .5rem 1.5rem; }
+.links a {
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  border-bottom: 1.5px solid var(--accent);
+  padding-bottom: .16rem;
+}
+.links a:hover { color: var(--accent); }
+
+.close {
+  border-top: 1px solid var(--ink);
+  padding-top: 1.6rem;
+  margin-top: 2.6rem;
+  color: var(--body);
+}
+
+/* ---------------- resume viewer ---------------- */
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .6rem 1.6rem;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 1.3rem;
+}
+.bar a {
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--ink);
+  border-bottom: 1.5px solid var(--accent);
+  padding-bottom: .16rem;
+}
+.bar a:hover { color: var(--accent); }
+
+#pages canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin-bottom: 1rem;
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: 0 2px 14px var(--shadow);
+}
+#pages canvas:last-child { margin-bottom: 0; }
+
+.note {
+  font-size: .95rem;
+  color: var(--graphite);
+  text-align: center;
+  padding: 3rem 1rem;
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+/* ---------------- playlist ---------------- */
+
+.embed {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 14px var(--shadow);
+  background: var(--surface);
+  min-height: 420px;
+}
+.embed iframe { display: block; width: 100%; border: none; }
+
+/* ---------------- responsive ---------------- */
+
+@media (max-width: 760px) {
+  body { font-size: 18px; }
+  .home-grid { grid-template-columns: 1fr; }
+  .home-photo { order: -1; }
+  .portrait { aspect-ratio: 3 / 2; }
+  .entry { grid-template-columns: 1fr; gap: 1.3rem; }
+  .entry img { aspect-ratio: 3 / 2; }
+  /* Let the bar scroll away on phones instead of holding two rows
+     of links against the top of a short screen. */
+  .nav { position: static; }
+  .nav-inner { padding-top: .6rem; padding-bottom: .6rem; gap: .5rem 1rem; }
+  /* Row 1: brand and toggle. Row 2: the links, full width. */
+  .brand  { order: 1; }
+  .toggle { order: 2; }
+  .nav-links { order: 3; flex-basis: 100%; }
+  .nav-links { gap: .3rem 1rem; }
+  .nav-links a { font-size: .74rem; letter-spacing: .09em; }
+  .brand { font-size: 1.02rem; }
+  .toggle { width: 1.85rem; height: 1.85rem; }
+  .toggle svg { width: .95rem; height: .95rem; }
+}
+
+@media (max-width: 440px) {
+  /* Below this the wordmark is what pushes the links onto a third row. */
+  .brand span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+  .brand svg { width: 1.7em; height: 1.7em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}

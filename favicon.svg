@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <style>
+    .disc { fill: #171A19; }
+    .shine { stroke: #E4E7E3; fill: none; stroke-linecap: round; }
+    .label { fill: #E4E7E3; }
+    .hole { fill: #171A19; }
+    @media (prefers-color-scheme: dark) {
+      .disc { fill: #E6E9E4; }
+      .shine { stroke: #151917; }
+      .label { fill: #151917; }
+      .hole { fill: #E6E9E4; }
+    }
+  </style>
+  <circle class="disc" cx="50" cy="50" r="49"/>
+  <path class="shine" stroke-width="17" d="M24 29.68 A33 33 0 0 1 51.15 17.02"/>
+  <path class="shine" stroke-width="8"  d="M25.55 44.8 L14.79 42.52"/>
+  <path class="shine" stroke-width="17" d="M76 70.32 A33 33 0 0 1 48.85 82.98"/>
+  <path class="shine" stroke-width="8"  d="M74.45 55.2 L85.21 57.48"/>
+  <circle class="label" cx="50" cy="50" r="18"/>
+  <circle class="hole" cx="50" cy="50" r="7"/>
+</svg>
