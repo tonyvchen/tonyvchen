@@ -20,16 +20,16 @@
 <header class="nav">
   <div class="nav-inner">
     <a class="brand" href="index.html">
-      <svg viewBox="0 0 100 100" aria-hidden="true">
-        <circle cx="50" cy="50" r="49" fill="currentColor"/>
-        <g stroke="var(--paper)" fill="none" stroke-linecap="round">
+      <svg viewBox="0 0 100 100" width="28" height="28" aria-hidden="true">
+        <circle cx="50" cy="50" r="49" fill="var(--ink, #18212B)"/>
+        <g stroke="var(--paper, #F8FAFC)" fill="none" stroke-linecap="round">
           <path stroke-width="17" d="M24 29.68 A33 33 0 0 1 51.15 17.02"/>
           <path stroke-width="8"  d="M25.55 44.8 L14.79 42.52"/>
           <path stroke-width="17" d="M76 70.32 A33 33 0 0 1 48.85 82.98"/>
           <path stroke-width="8"  d="M74.45 55.2 L85.21 57.48"/>
         </g>
-        <circle cx="50" cy="50" r="18" fill="var(--paper)"/>
-        <circle cx="50" cy="50" r="7" fill="currentColor"/>
+        <circle cx="50" cy="50" r="18" fill="var(--paper, #F8FAFC)"/>
+        <circle cx="50" cy="50" r="7" fill="var(--ink, #18212B)"/>
       </svg>
       <span>Tony Chen</span>
     </a>
@@ -37,15 +37,15 @@
       <a href="index.html" aria-current="page">Home</a>
       <a href="projects.html">Projects</a>
       <a href="resume.html">Resume</a>
-      <a href="playlist.html">Playlist</a>
+      <a href="playlist.html">Playing</a>
       <a href="mailto:tonychen1@ucla.edu">Email</a>
     </nav>
     <button class="toggle" id="theme-toggle" type="button" aria-label="Switch theme">
-      <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+      <svg class="sun" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
         <circle cx="12" cy="12" r="4.2"/>
         <path d="M12 2.6v2.1M12 19.3v2.1M2.6 12h2.1M19.3 12h2.1M5.3 5.3l1.5 1.5M17.2 17.2l1.5 1.5M18.7 5.3l-1.5 1.5M6.8 17.2l-1.5 1.5"/>
       </svg>
-      <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <svg class="moon" viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/>
       </svg>
     </button>
@@ -57,6 +57,7 @@
     <div>
       <p class="label">Electrical &amp; Computer Engineering / UCLA</p>
       <h1>Tony Chen</h1>
+      <p class="home-email"><a href="mailto:tonychen1@ucla.edu">tonychen1@ucla.edu</a></p>
 
       <hr>
 
@@ -81,6 +82,11 @@
     </div>
   </div>
 </main>
+
+<footer class="contact">
+  <a href="tel:+14129448402">412-944-8402</a>
+  <a href="mailto:tonychen1@ucla.edu">tonychen1@ucla.edu</a>
+</footer>
 
 <script src="site.js"></script>
 </body>

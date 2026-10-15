@@ -1,14 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
   <style>
-    .disc { fill: #171A19; }
-    .shine { stroke: #E4E7E3; fill: none; stroke-linecap: round; }
-    .label { fill: #E4E7E3; }
-    .hole { fill: #171A19; }
+    .disc { fill: #18212B; }
+    .shine { stroke: #F8FAFC; fill: none; stroke-linecap: round; }
+    .label { fill: #F8FAFC; }
+    .hole { fill: #18212B; }
     @media (prefers-color-scheme: dark) {
-      .disc { fill: #E6E9E4; }
-      .shine { stroke: #151917; }
-      .label { fill: #151917; }
-      .hole { fill: #E6E9E4; }
+      .disc { fill: #E9EFF6; }
+      .shine { stroke: #101822; }
+      .label { fill: #101822; }
+      .hole { fill: #E9EFF6; }
     }
   </style>
   <circle class="disc" cx="50" cy="50" r="49"/>

@@ -6,14 +6,14 @@
    --------------------------------------------------------------- */
 
 :root {
-  --paper:   #E4E7E3;
-  --surface: #EDEFEB;
-  --ink:     #171A19;
-  --body:    #2A2F2C;
-  --graphite:#5C635F;
-  --rule:    #B9C0BA;
-  --accent:  #1B3AC4;
-  --shadow:  rgba(23, 26, 25, .10);
+  --paper:   #F8FAFC;
+  --surface: #EDF3FC;
+  --ink:     #18212B;
+  --body:    #3B4854;
+  --graphite:#5B6875;
+  --rule:    #BFCBDA;
+  --accent:  #1F5AC4;
+  --shadow:  rgba(24, 33, 43, .10);
 
   --serif: "EB Garamond", Garamond, "Times New Roman", serif;
   --shell: 54rem;
@@ -21,14 +21,14 @@
 }
 
 :root[data-theme="dark"] {
-  --paper:   #151917;
-  --surface: #1D2220;
-  --ink:     #E6E9E4;
-  --body:    #C4CBC5;
-  --graphite:#98A19B;
-  --rule:    #2F3734;
-  --accent:  #93A9FF;
-  --shadow:  rgba(0, 0, 0, .40);
+  --paper:   #101822;
+  --surface: #18212C;
+  --ink:     #E9EFF6;
+  --body:    #BCC8D5;
+  --graphite:#8C99A7;
+  --rule:    #2B3744;
+  --accent:  #8FB6F5;
+  --shadow:  rgba(0, 0, 0, .45);
 }
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -214,6 +214,43 @@ body.home .home-grid { width: 100%; }
   text-transform: uppercase;
   color: var(--graphite);
 }
+
+/* Email sitting directly under the name. */
+.home-email {
+  margin: .55rem 0 0;
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+}
+.home-email a {
+  color: var(--graphite);
+  text-decoration: none;
+  border-bottom: 1.5px solid var(--accent);
+  padding-bottom: .16rem;
+}
+.home-email a:hover { color: var(--ink); }
+
+/* ---------------- contact footer (every page) ---------------- */
+
+.contact {
+  /* width:100% matters on the home page: auto side margins on a column
+     flex child cancel stretch, so without it the bar shrinks to its text. */
+  width: 100%;
+  max-width: var(--shell);
+  margin: 0 auto;
+  padding: 1.3rem clamp(1.1rem, 5vw, 2rem) 2.2rem;
+  border-top: 1px solid var(--rule);
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem 2.2rem;
+  font-size: .76rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.contact a { color: var(--graphite); text-decoration: none; }
+.contact a:hover { color: var(--ink); }
 
 /* ---------------- section headings ---------------- */
 
